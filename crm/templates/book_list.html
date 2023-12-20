@@ -1,0 +1,61 @@
+{%extends 'base.html'%}
+
+
+{%block body_block%}
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <div class="container">
+
+            <form action="" method="post">
+                {%csrf_token%}
+                <div class="d-flex">
+                    <input type="text" name="box" class="form-control">
+                    <button class="btn btn-primary ms-2">search</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <div class="container">
+            <table class="table table-bordered">
+                <tr class="table-dark">
+                    <th>Name</th>
+                    <th>Genre</th>
+                    <th>Author</th>
+                    <th>price</th>
+                    <th>Publish Date</th>
+                    <th>Publisher</th>
+                    <th class="">Action</th>
+                </tr>
+                <tr>
+                    {%for book in data%}
+
+
+                    <td>{{book.name}}</td>
+                    <td>{{book.genre}}</td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.price}}</td>
+                    <td>{{book.publishdate}}</td>
+                    <td>{{book.publisher}}</td>
+                    <td class="">
+                        <a href="{%url 'book-detail' book.id%}"><i class="col-4 ms-3 fa-solid fa-eye "></i></a>
+
+                        <a href="{%url 'book-update' book.id%}"><i class="col-4  fa-regular fa-pen-to-square ms-3 "></i></a>
+
+                        <a href="{%url 'book-remove' book.id%}"><i class="col-4  fa-solid fa-trash ms-3 "></i></a>
+                    </td>
+                </tr>
+                {%endfor%}
+
+            </table>
+        </div>
+    </div>
+    <div class="col-2"></div>
+</div>
+
+{%endblock%}
